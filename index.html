@@ -17,11 +17,10 @@
 <meta name="twitter:description" content="An iOS companion for taking back control. Join the TestFlight beta.">
 <meta name="twitter:image" content="https://goonsahur.com/og.png">
 <style>
-:root{--ink:#f4f0ff;--muted:rgba(244,240,255,.72);--glass:rgba(255,255,255,.10);--glass2:rgba(255,255,255,.16);--line:rgba(255,255,255,.22);--bg0:#1b0640;--bg1:#5b0fa8;--bg2:#b01a86;--bg3:#14386e}
+:root{--ink:#f4f0ff;--muted:rgba(244,240,255,.72);--glass:rgba(255,255,255,.10);--line:rgba(255,255,255,.22);--bg0:#1b0640}
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.55;background:var(--bg0);overflow-x:hidden}
-/* vibrant fixed backdrop */
 .sky{position:fixed;inset:0;z-index:-1;background:
  radial-gradient(90% 60% at 85% -5%,#e0359b 0%,rgba(224,53,155,0) 55%),
  radial-gradient(80% 55% at 0% 18%,#7b18c9 0%,rgba(123,24,201,0) 60%),
@@ -30,41 +29,93 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
  linear-gradient(180deg,#250752,#12032b)}
 .sky::after{content:"";position:absolute;inset:0;background-image:radial-gradient(1.5px 1.5px at 20% 30%,#fff8,transparent),radial-gradient(1px 1px at 70% 15%,#fff7,transparent),radial-gradient(1.2px 1.2px at 40% 70%,#fff6,transparent),radial-gradient(1px 1px at 85% 60%,#fff7,transparent),radial-gradient(1.4px 1.4px at 10% 85%,#fff5,transparent),radial-gradient(1px 1px at 55% 45%,#fff5,transparent);opacity:.8}
 .wrap{max-width:430px;margin:0 auto;padding:0 20px}
-/* header */
 .bar{display:flex;align-items:center;gap:12px;padding:18px 20px;position:sticky;top:0;z-index:10;background:rgba(18,3,43,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .bar img{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);display:block}
 .bar b{font-size:22px;font-weight:800;letter-spacing:-.4px}
 .bar span{font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);display:block;margin-top:-3px}
-/* glass card that folds in on scroll */
 .card{background:var(--glass);border:1px solid var(--line);border-radius:26px;padding:22px 18px;margin:26px 0;backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);box-shadow:0 18px 50px rgba(10,0,30,.45);transform-origin:50% 100%;
  animation:fold .9s both cubic-bezier(.2,.7,.2,1);animation-timeline:view();animation-range:entry 5% cover 42%}
 @keyframes fold{from{opacity:0;transform:perspective(900px) rotateX(28deg) translateY(56px) scale(.94);border-radius:60px 60px 26px 26px;filter:blur(6px)}to{opacity:1;transform:none;border-radius:26px;filter:blur(0)}}
 @supports not (animation-timeline:view()){.card{animation:none;opacity:1}}
 .card h2{font-size:21px;font-weight:800;letter-spacing:-.3px}
 .card>p{font-size:15px;color:var(--muted);margin:6px 0 16px}
-/* phone mockup */
-.phone{width:232px;margin:0 auto;background:#0d0d18;border-radius:38px;padding:9px;box-shadow:0 24px 60px rgba(5,0,20,.6),inset 0 0 0 1.5px rgba(255,255,255,.14)}
-.screen{background:linear-gradient(175deg,#3a1170,#1d0740 55%,#0e0424);border-radius:30px;overflow:hidden;position:relative;padding:14px 14px 18px;min-height:330px;display:flex;flex-direction:column}
-.notch{width:86px;height:22px;background:#0d0d18;border-radius:0 0 14px 14px;margin:0 auto 10px}
-.srow{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:8px}
-.stitle{font-size:17px;font-weight:800;margin:2px 0 12px}
-.tile{background:rgba(255,255,255,.10);border:1px solid var(--line);border-radius:14px;padding:11px 12px;margin-bottom:9px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.tile b{font-size:13px;display:block}
-.tile small{font-size:10.5px;color:var(--muted)}
-.pill{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:3px 9px;color:var(--muted)}
-.btnw{margin-top:auto;display:block;text-align:center;background:rgba(255,255,255,.92);color:#1c0537;font-size:13px;font-weight:700;padding:10px;border-radius:13px;text-decoration:none}
-.btng{margin-top:auto;display:block;text-align:center;background:rgba(255,255,255,.14);border:1px solid var(--line);color:var(--ink);font-size:13px;font-weight:700;padding:10px;border-radius:13px;text-decoration:none}
-.meter{height:9px;border-radius:999px;background:rgba(255,255,255,.14);overflow:hidden;margin:7px 0 3px}
-.meter i{display:block;height:100%;width:64%;background:linear-gradient(90deg,#c9b6ff,#fff)}
+/* phone mockup, styled like the real app */
+.phone{width:236px;margin:0 auto;background:#000;border-radius:44px;padding:10px;box-shadow:0 24px 60px rgba(5,0,20,.6),inset 0 0 0 1.5px rgba(255,255,255,.14)}
+.screen{background:#141218;border-radius:34px;overflow:hidden;position:relative;display:flex;flex-direction:column;height:460px}
+.island{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:74px;height:20px;background:#000;border-radius:999px;z-index:5}
+.srow{display:flex;justify-content:space-between;font-size:9.5px;font-weight:600;color:#fff;padding:12px 16px 4px}
+/* app header like the real one */
+.ahead{background:#000;padding:8px 12px 10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.ahead .t{display:flex;align-items:center;justify-content:space-between}
+.ahead .t b{font-size:15px;font-weight:800;color:#fff}
+.circs{display:flex;gap:6px}
+.circ{width:22px;height:22px;border-radius:50%;background:#1d1b20;border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff}
+.xp{display:flex;align-items:center;gap:6px;margin-top:7px;font-size:8.5px;color:#a5a2aa}
+.xp .bar2{flex:1;height:4px;border-radius:999px;background:#2a2830;overflow:hidden}
+.xp .bar2 i{display:block;height:100%;width:96%;background:#fff}
+/* scene */
+.scene{flex:1;position:relative;background:radial-gradient(80% 60% at 50% 30%,#3c3646,#1a171f 70%);display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.scene img{height:78%;display:block;position:relative;z-index:1}
+.scene .dots{position:absolute;inset:0;background-image:radial-gradient(1px 1px at 25% 25%,#fff5,transparent),radial-gradient(1px 1px at 70% 20%,#fff4,transparent),radial-gradient(1.2px 1.2px at 55% 45%,#fff3,transparent),radial-gradient(1px 1px at 15% 60%,#fff4,transparent),radial-gradient(1px 1px at 85% 55%,#fff3,transparent)}
+/* app cards */
+.acard{background:#1d1b20;border-radius:18px;padding:10px 12px;margin:8px 10px}
+.stats{display:flex;text-align:center}
+.stats div{flex:1}
+.stats div+div{border-left:1px solid rgba(255,255,255,.12)}
+.stats b{font-size:15px;font-weight:600;color:#fff;display:block}
+.stats small{font-size:8px;color:#a5a2aa;display:block;line-height:1.3}
+.stats small em{font-style:normal;display:block}
+.rowcard{display:flex;align-items:center;gap:9px}
+.rowcard .ic{width:26px;height:26px;border-radius:8px;background:#2a2830;display:flex;align-items:center;justify-content:center;font-size:12px}
+.rowcard b{font-size:10.5px;font-weight:600;color:#fff;display:block}
+.rowcard small{font-size:8px;color:#a5a2aa}
+.rowcard .chev{margin-left:auto;color:#a5a2aa;font-size:13px}
+.hint{display:flex;align-items:center;justify-content:space-between;padding:4px 12px 10px;font-size:8px;color:#a5a2aa}
+.emotes{display:flex;align-items:center;gap:4px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);border-radius:999px;padding:3px 8px;color:#fff;font-size:8px;font-weight:600}
+/* SOS panel */
+.sos{position:absolute;inset:38px 10px auto;background:rgba(41,39,44,.94);border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:12px;z-index:6;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.sos h4{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#b8b6bf;text-align:center;margin-bottom:8px}
+.sos .photo{height:64px;border-radius:14px;overflow:hidden;margin-bottom:8px}
+.sos .photo img{width:100%;height:100%;object-fit:cover;display:block}
+.sos .msg{font-size:12.5px;font-weight:700;color:#f7f6f8;line-height:1.35;margin-bottom:7px}
+.meta{display:flex;gap:12px;font-size:9px;color:#b7b3be;margin-bottom:9px}
+.bcall{display:flex;align-items:center;justify-content:center;gap:6px;background:#406a9e;border-radius:999px;padding:8px;font-size:11px;font-weight:700;color:#378bff;margin-bottom:7px}
+.brow{display:flex;gap:7px}
+.bcancel{flex:1;text-align:center;background:#a8a4b4;border-radius:999px;padding:8px;font-size:11px;font-weight:700;color:#fff}
+.bblock{flex:1.4;text-align:center;background:#58ccf4;border-radius:999px;padding:8px;font-size:11px;font-weight:700;color:#fff}
+/* call panel */
+.callp{position:absolute;left:10px;right:10px;bottom:10px;background:#1d1b20;border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:12px;z-index:6}
+.callp .top{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:#fff}
+.callp .aipill{margin-left:auto;font-size:7.5px;font-weight:800;letter-spacing:.5px;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:2px 6px;color:#fff}
+.callp .left{font-size:9.5px;color:#a5a2aa;margin:5px 0 9px}
+.callp .ctrls{display:flex;align-items:center;gap:7px}
+.cbtn{width:30px;height:30px;border-radius:50%;background:#2a2830;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:12px;color:#b7b3be}
+.ccancel{margin-left:auto;display:flex;align-items:center;gap:5px;background:#fff;border-radius:999px;padding:7px 12px;font-size:10.5px;font-weight:700;color:#000}
+.callp .foot{font-size:7.5px;color:#a5a2aa;margin-top:9px}
+/* store sheet */
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#1a181d;border-radius:26px 26px 0 0;border-top:1px solid rgba(255,255,255,.14);padding:10px 12px 12px;z-index:6}
+.handle{width:34px;height:4px;border-radius:999px;background:#4a4750;margin:0 auto 8px}
+.sheet .sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.sheet .sh b{font-size:13px;font-weight:800;color:#fff}
+.done{font-size:9.5px;font-weight:700;color:#fff;background:#2a2830;border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:4px 11px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.item{background:#232028;border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:8px}
+.item .prev{height:52px;border-radius:11px;margin-bottom:6px;display:flex;align-items:center;justify-content:center;position:relative}
+.item .prev span{font-size:8px;font-weight:800;color:#fff;background:rgba(0,0,0,.35);border-radius:999px;padding:2px 7px;position:absolute;top:5px;right:5px}
+.item b{font-size:10px;font-weight:700;color:#fff;display:block}
+.item small{font-size:7.5px;color:#a5a2aa;display:block;margin:2px 0 6px;line-height:1.35}
+.lvl{display:block;text-align:center;background:#fff;color:#000;font-size:9px;font-weight:800;border-radius:999px;padding:5px}
+.lvl.eq{background:#2a2830;color:#a5a2aa;border:1px solid rgba(255,255,255,.15)}
+/* override */
+.ovr{padding:14px 12px;flex:1;display:flex;flex-direction:column}
+.ovr h4{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#b8b6bf;text-align:center;margin-bottom:10px}
+.tile{background:#1d1b20;border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:10px 12px;margin-bottom:8px}
+.tile b{font-size:11px;color:#fff;display:block}
+.tile small{font-size:8.5px;color:#a5a2aa}
+.meter{height:6px;border-radius:999px;background:#2a2830;overflow:hidden;margin-top:6px}
+.meter i{display:block;height:100%;width:64%;background:#fff}
+.bgo{margin-top:auto;display:block;text-align:center;background:#58ccf4;color:#fff;font-size:11.5px;font-weight:800;padding:9px;border-radius:999px;text-decoration:none}
 .cap{font-size:11px;color:var(--muted);text-align:center;margin-top:10px}
-/* call screen character */
-.char{flex:1;display:flex;align-items:center;justify-content:center;min-height:190px;position:relative;border-radius:16px;background:radial-gradient(70% 70% at 50% 35%,rgba(190,120,255,.35),rgba(30,8,60,.0));border:1px solid var(--line);overflow:hidden;margin-bottom:9px}
-.char img{height:180px;display:block}
-.wave{display:flex;gap:3px;align-items:center;justify-content:center;height:16px}
-.wave i{width:3px;border-radius:2px;background:rgba(255,255,255,.85);animation:w 1s infinite ease-in-out}
-.wave i:nth-child(1){height:6px}.wave i:nth-child(2){height:12px;animation-delay:.15s}.wave i:nth-child(3){height:9px;animation-delay:.3s}.wave i:nth-child(4){height:14px;animation-delay:.45s}.wave i:nth-child(5){height:7px;animation-delay:.6s}.wave i:nth-child(6){height:11px;animation-delay:.75s}.wave i:nth-child(7){height:5px;animation-delay:.9s}
-@keyframes w{50%{transform:scaleY(.45)}}
-@media (prefers-reduced-motion:reduce){.wave i,.card{animation:none}.card{opacity:1}}
 /* download */
 .dl{background:rgba(255,255,255,.13);border:1px solid var(--line);border-radius:26px;padding:26px 20px;margin:34px 0 10px;text-align:center;backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);box-shadow:0 18px 50px rgba(10,0,30,.5)}
 .dl h2{font-size:24px;font-weight:800;letter-spacing:-.4px}
@@ -75,6 +126,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 .sub{font-size:13px;color:var(--muted);text-align:center;margin:12px 0 0}
 .sub a{color:#fff;font-weight:700;text-decoration:underline}
 footer{padding:26px 0 44px;text-align:center;font-size:12px;color:rgba(244,240,255,.55)}
+@media (prefers-reduced-motion:reduce){.card{animation:none;opacity:1}}
 </style>
 </head>
 <body>
@@ -86,61 +138,94 @@ footer{padding:26px 0 44px;text-align:center;font-size:12px;color:rgba(244,240,2
 <main class="wrap">
 
 <section class="card">
-<h2>Override an urge in the moment</h2>
-<p>When a pause feels impossible, override it deliberately: set why you're pausing, for how long, and let the app hold the line with Screen Time.</p>
+<h2>Your goon character, on screen</h2>
+<p>The app is your companion: a character you level up, play with, and keep with you. Tap to play, stroke to pet, and watch your streak grow.</p>
 <div class="phone"><div class="screen">
-<div class="notch"></div>
-<div class="srow"><span>9:41</span><span>5G</span></div>
-<div class="stitle">Override pause</div>
-<div class="tile"><b>Reason</b><small>"I want my evening back."</small></div>
-<div class="tile"><b>Duration</b><small>2 hours, apps locked</small></div>
-<div class="tile"><b>GoonTokens</b><small>10 earned per hour of pause</small><div class="meter"><i></i></div></div>
-<a class="btnw" href="https://testflight.apple.com/join/MPYwAhQb">Start override</a>
+<div class="island"></div>
+<div class="srow"><span>1:54</span><span>5G</span></div>
+<div class="ahead"><div class="t"><b>GoonSahur</b><div class="circs"><div class="circ">&#128717;</div><div class="circ">&#9742;</div><div class="circ">&#9881;</div></div></div>
+<div class="xp"><span>Lvl 17</span><div class="bar2"><i></i></div><span>566/590 XP</span></div>
+<div class="xp"><span>&#11088; 208 GoonTokens</span></div></div>
+<div class="scene"><div class="dots"></div><img src="mascot.jpg" alt="Your goon character in the app"></div>
+<div class="acard stats"><div><b>56</b><small><em>SOS</em>triggers</small></div><div><b>0</b><small><em>Streak</em>days</small></div><div><b>26%</b><small><em>Early end</em>of pauses</small></div></div>
+<div class="acard rowcard"><div class="ic">&#127769;</div><div><b>Here, whenever you need a pause</b><small>Start SOS with your Action Button or Shortcut.</small></div><div class="chev">&#8250;</div></div>
+<div class="hint"><span>Tap to play &middot; Stroke to pet</span><span class="emotes">&#128578; Emotes</span></div>
 </div></div>
-<div class="cap">Deliberate overrides, held by Screen Time</div>
+<div class="cap">Level up, earn GoonTokens, keep your streak</div>
 </section>
 
 <section class="card">
 <h2>SOS when it hits</h2>
-<p>One tap opens your own SOS card: the message you wrote to yourself, breathing space, and a direct call to the person you chose.</p>
+<p>One tap opens your SOS card: the photo and message you chose, the pause it triggers, and a direct line out.</p>
 <div class="phone"><div class="screen">
-<div class="notch"></div>
-<div class="srow"><span>9:41</span><span>5G</span></div>
-<div class="stitle">SOS</div>
-<span class="pill">Custom card</span>
-<div class="tile" style="margin-top:10px"><b>"You've made it past this before."</b><small>Your note to yourself, in your words</small></div>
-<div class="tile"><b>Call target</b><small>Alex, ring until answered</small></div>
-<a class="btnw" href="https://testflight.apple.com/join/MPYwAhQb">Send SOS</a>
+<div class="island"></div>
+<div class="srow"><span>1:54</span><span>5G</span></div>
+<div class="scene"><div class="dots"></div><img src="mascot.jpg" alt="" style="height:60%;opacity:.5"></div>
+<div class="sos">
+<h4>GoonSahur SOS</h4>
+<div class="photo"><img src="sosphoto.jpg" alt="Your SOS photo"></div>
+<div class="msg">Think about the people you love.</div>
+<div class="meta"><span>&#128337; 1 hr pause</span><span>&#9635; 3 apps</span></div>
+<a class="bcall" href="https://testflight.apple.com/join/MPYwAhQb">&#9742; Call GoonSahur</a>
+<div class="brow"><span class="bcancel">Cancel</span><a class="bblock" href="https://testflight.apple.com/join/MPYwAhQb">Block Gooning</a></div>
+</div>
 </div></div>
-<div class="cap">Your card, your call target, one tap</div>
+<div class="cap">Your card, your pause, your call target</div>
 </section>
 
 <section class="card">
 <h2>Block Gooning</h2>
-<p>Flip the switch and the sites and apps you flagged stay blocked for the window you set. No willpower needed at 1 a.m.</p>
+<p>From the SOS card, one tap blocks the sites and apps you flagged for the window you set. No willpower needed at 1 a.m.</p>
 <div class="phone"><div class="screen">
-<div class="notch"></div>
-<div class="srow"><span>9:41</span><span>5G</span></div>
-<div class="stitle">Block Gooning</div>
+<div class="island"></div>
+<div class="srow"><span>1:54</span><span>5G</span></div>
+<div class="ovr">
+<h4>Block Gooning</h4>
 <div class="tile"><b>Flagged sites</b><small>14 domains, Screen Time blocked</small></div>
 <div class="tile"><b>Window</b><small>Overnight, 11 p.m. to 7 a.m.</small></div>
-<a class="btng">Block is active</a>
+<div class="tile"><b>GoonTokens</b><small>10 earned per hour of pause</small><div class="meter"><i></i></div></div>
+<a class="bgo" href="https://testflight.apple.com/join/MPYwAhQb">Block Gooning</a>
+</div>
 </div></div>
 <div class="cap">Set once, protected overnight</div>
 </section>
 
 <section class="card">
-<h2>Talk to your companion</h2>
-<p>Live companion calls with your goon character in the app. A voice in the moment when you need one. Your first minute is free, then 10 GoonTokens a minute.</p>
+<h2>Call your companion</h2>
+<p>Live calls with your goon character. A voice in the moment when you need one. Your first minute is free, then 10 GoonTokens a minute.</p>
 <div class="phone"><div class="screen">
-<div class="notch"></div>
-<div class="srow"><span>9:41</span><span>5G</span></div>
-<div class="stitle">Companion call</div>
-<div class="char"><img src="mascot.jpg" alt="Your goon character on a companion call"></div>
-<div class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-<a class="btnw" href="https://testflight.apple.com/join/MPYwAhQb">Keep talking</a>
+<div class="island"></div>
+<div class="srow"><span>1:54</span><span>5G</span></div>
+<div class="scene"><div class="dots"></div><img src="mascot.jpg" alt="Your goon character on a call"></div>
+<div class="callp">
+<div class="top">&#9742; Calling GoonSahur...<span class="aipill">AI</span></div>
+<div class="left">10:00 left</div>
+<div class="ctrls"><div class="cbtn">&#127908;</div><div class="cbtn">&#128203;</div><a class="ccancel" href="https://testflight.apple.com/join/MPYwAhQb">&#9742; Cancel</a></div>
+<div class="foot">&#127908; Microphone starts when the call begins &middot; Nothing is saved</div>
+</div>
 </div></div>
 <div class="cap">First minute free, then 10 GoonTokens a minute</div>
+</section>
+
+<section class="card">
+<h2>The GoonToken Store</h2>
+<p>Spend the tokens you earn on hats and gear for your character. New items and token packs are on the way.</p>
+<div class="phone"><div class="screen">
+<div class="island"></div>
+<div class="srow"><span>1:55</span><span>5G</span></div>
+<div class="scene"><div class="dots"></div><img src="mascot.jpg" alt="" style="height:52%;opacity:.6"></div>
+<div class="sheet">
+<div class="handle"></div>
+<div class="sh"><b>GoonToken Store</b><span class="done">Done</span></div>
+<div class="grid">
+<div class="item"><div class="prev" style="background:linear-gradient(135deg,#f08fb2,#c2548a)"><span>&#128081;</span></div><b>Dome Top</b><small>A soft rounded crown, like a fresh loaf.</small><span class="lvl">Level 20</span></div>
+<div class="item"><div class="prev" style="background:linear-gradient(135deg,#5b5fd6,#8a5bd6)"><span>&#11088;</span></div><b>Star Cone</b><small>A cosmic cone with a glowing star.</small><span class="lvl">Level 40</span></div>
+<div class="item"><div class="prev" style="background:#fff"><span style="color:#1c0537;background:rgba(255,255,255,.85)">&#11088;</span></div><b>Star of David Yarmulke</b><small>White satin, blue Magen David and flag trim.</small><span class="lvl">Equip</span></div>
+<div class="item"><div class="prev" style="background:linear-gradient(135deg,#d64bd0,#7a2fb0)"><span>Cool</span></div><b>More gear</b><small>Hats, cones, and token packs coming soon.</small><span class="lvl eq">Soon</span></div>
+</div>
+</div>
+</div></div>
+<div class="cap">Earn tokens by pausing, spend them on gear</div>
 </section>
 
 <section class="dl">
