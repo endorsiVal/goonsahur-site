@@ -36,6 +36,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 .bar img{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);display:block}
 .bar b{font-family:"Fredoka","Quicksand",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:23px;font-weight:600;letter-spacing:-.2px}
 .bar span{font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);display:block;margin-top:-3px}
+.dlbtn{margin-left:auto;display:flex;align-items:center;gap:6px;background:#f08fb2;color:#2a0a18;font-size:14px;font-weight:800;padding:9px 16px;border-radius:999px;text-decoration:none;box-shadow:0 6px 20px rgba(240,143,178,.4);-webkit-tap-highlight-color:transparent}
+.dlbtn:active{transform:scale(.97)}
 .card{background:var(--glass);border:1px solid var(--line);border-radius:26px;padding:22px 18px;margin:26px 0;backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);box-shadow:0 18px 50px rgba(10,0,30,.45);transform-origin:50% 100%;
  animation:fold .9s both cubic-bezier(.2,.7,.2,1);animation-timeline:view();animation-range:entry 5% cover 42%}
 @keyframes fold{from{opacity:0;transform:perspective(900px) rotateX(28deg) translateY(56px) scale(.94);border-radius:60px 60px 26px 26px;filter:blur(6px)}to{opacity:1;transform:none;border-radius:26px;filter:blur(0)}}
@@ -137,6 +139,7 @@ footer{padding:26px 0 44px;text-align:center;font-size:12px;color:rgba(244,240,2
 <header class="bar">
 <img src="logo.jpg" width="44" height="44" alt="GoonSahur mascot logo">
 <div><b>Goon<span style="color:#f08fb2">Sahur</span></b><span>iOS beta</span></div>
+<a class="dlbtn" href="https://testflight.apple.com/join/MPYwAhQb">&#8595; Download</a>
 </header>
 <main class="wrap">
 
